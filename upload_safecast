@@ -1,0 +1,47 @@
+#!/usr/local/bin/python
+
+import os
+import sys
+import time
+import glob
+import shutil
+import ConfigParser
+
+safecastpath = os.getenv('HOME') + '/Safecast'
+config = ConfigParser.RawConfigParser()
+config.read(safecastpath + '/config/upload_safecast.ini')
+apikey   = config.get('common', 'APIKEY')
+location = config.get('common', 'LOCATION')
+credits  = config.get('common', 'CREDITS')
+volume   = config.get('common', 'VOLUME')
+
+# This is a simple way to disable this script
+if os.path.exists(os.getenv('HOME') + '/.upload_safecast_lock'):
+    print "Encountered lock file.  Exiting..."
+    sys.exit(1)
+
+time.sleep(1)  ## Give it time to mount fully
+sdcardpath = '/Volumes/' + volume
+if os.path.exists(sdcardpath):
+    os.system('say data card detected')
+    if not os.path.exists(safecastpath):
+        os.makedirs(safecastpath)
+    if not os.path.exists(sdcardpath + '/ARCHIVE'):
+        os.makedirs(safecastpath + '/ARCHIVE')
+    for logpath in glob.glob(os.path.join(sdcardpath, '*.LOG')):
+        if os.path.isfile(logpath):
+            newlogname = (os.path.basename(logpath)[:-4] + '_' +
+                          str(int(time.time())) + '.LOG')
+            try:
+                shutil.copy(logpath, safecastpath + '/' + newlogname)
+            except:
+                os.system('say copy failed')
+            else:
+                shutil.move(logpath, sdcardpath + '/ARCHIVE/' + newlogname)
+                os.system(safecastpath + '/bin/export_safecast.py' +
+                          ' -k ' + apikey +
+                          ' -l ' + location +
+                          ' -c "' + credits + '" ' +
+                          safecastpath + '/' + newlogname)
+    os.system('diskutil unmount ' + volume)
+    os.system('say data card unmounted')
