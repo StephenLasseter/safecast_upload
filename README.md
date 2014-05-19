@@ -21,7 +21,13 @@ enough that it is practically plug-n-play.
      4. `cp upload_safecast ~/Safecast/bin`
      5. `cp upload_safecast.ini ~/Safecast/config`
 3. Edit ~/Safecast/config/upload_safecast.ini with your custom settings.
-4. Load the launchd configuation:
+4. Clone the Databot repo and copy export_safecast.py from it:
+     1. `git clone https://github.com/bidouilles/Databot`
+     2. `cp Databot/export_safecast.py ~/Safecast/bin`
+     3. `chmod +x ~/Safecast/bin/export_safecast.py`
+5. Check that you have all the required python modules installed.  If not,
+     fetch them manually or with `pip`.
+6. Load the launchd configuration:
      `launchctl load ~/Library/LaunchAgents/org.safecast.upload_safecast.plist`
 
 Enjoy and feel free to leave suggestions.
