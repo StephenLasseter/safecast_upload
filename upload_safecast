@@ -87,6 +87,7 @@ def main():
         imports_url = ('https://api.safecast.org/en-US/bgeigie_imports?' +
                        'by_status=processed&by_user_id=' + userid +
                        '&order=created_at+asc')
+        time.sleep(5)  ## Give safecast a moment to process
         os.system('osascript -e \'open location "' + imports_url + '"\'')
 
 
