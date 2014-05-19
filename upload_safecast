@@ -40,8 +40,8 @@ def main():
     # volume name that is set in the upload_safecast.ini configuration.  If
     # not, silently exit.
     if os.path.exists(sdcardpath):
-        os.system('say data card detected')
         notify("Data card detected")
+        os.system('say data card detected')
         if not os.path.exists(safecastpath):
             os.makedirs(safecastpath)
         if not os.path.exists(sdcardpath + '/ARCHIVE'):
@@ -56,8 +56,8 @@ def main():
                     # Copy the log file from the SD card to local disk
                     shutil.copy(logpath, safecastpath + '/' + newlogname)
                 except:
-                    os.system('say copy failed')
                     notify("copy failed")
+                    os.system('say copy failed')
                     sys.exit(1)
                 else:
                     # Archive the log file on the SD card
@@ -71,17 +71,17 @@ def main():
                                 ' -c "' + credits + '" ' +
                                 safecastpath + '/' + newlogname)
                     except:
-                        os.system('say export to safecast a p i failed')
                         notify("Export to API failed.  See logs.")
+                        os.system('say export to safecast a p i failed')
                         sys.exit(1)
                     else:
                         # Archive the log file on the local system
                         shutil.move(safecastpath + '/' + newlogname,
-                                    safecastpath + '/ARCHIVE/' + newlogname)
+                                    safecastpath + '/ARCHIVE')
         # Eject the data card and notify the user it is safe to remove
         os.system('diskutil unmount ' + volume)
-        os.system('say data card unmounted')
         notify("Data card unmounted")
+        os.system('say data card unmounted')
 
         # Open the safecast import url for the user to review
         imports_url = ('https://api.safecast.org/en-US/bgeigie_imports?' +
