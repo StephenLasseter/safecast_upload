@@ -15,14 +15,14 @@ enough that it is practically plug-n-play.
 1. Mount your bGeigie SD card and move all processed logs to ARCHIVE.  Unmount
      the card when you are finished.
 2. Run the following from the command-line:
-     `cp org.safecast.upload_safecast.plist ~/Library/LaunchAgents`
-     `mkdir -p ~/Safecast/bin` 
-     `mkdir -p ~/Safecast/config` 
-     `cp upload_safecast ~/Safecast/bin`
-     `cp upload_safecast.ini ~/Safecast/config`
+     1. `cp org.safecast.upload_safecast.plist ~/Library/LaunchAgents`
+     2. `mkdir -p ~/Safecast/bin` 
+     3. `mkdir -p ~/Safecast/config` 
+     4. `cp upload_safecast ~/Safecast/bin`
+     5. `cp upload_safecast.ini ~/Safecast/config`
 3. Edit ~/Safecast/config/upload_safecast.ini with your custom settings.
 4. Load the launchd configuation:
      `launchctl load ~/Library/LaunchAgents/org.safecast.upload_safecast.plist`
 
 Enjoy and feel free to leave suggestions.
-https://github.com/StephenLasseter/safecast_upload
+[https://github.com/StephenLasseter/safecast_upload](https://github.com/StephenLasseter/safecast_upload)
