@@ -20,7 +20,7 @@ enough that it is practically plug-n-play.
      3. `mkdir -p ~/Safecast/config` 
      4. `cp upload_safecast ~/Safecast/bin`
      5. `cp upload_safecast.ini ~/Safecast/config`
-3. Edit ~/Safecast/config/upload_safecast.ini with your custom settings.
+3. Edit `~/Safecast/config/upload_safecast.ini` with your custom settings.
 4. Clone the Databot repo and copy export_safecast.py from it:
      1. `git clone https://github.com/bidouilles/Databot`
      2. `cp Databot/export_safecast.py ~/Safecast/bin`
