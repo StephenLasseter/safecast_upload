@@ -44,6 +44,8 @@ def main():
         os.system('say data card detected')
         if not os.path.exists(safecastpath):
             os.makedirs(safecastpath)
+        if not os.path.exists(safecastpath + '/ARCHIVE'):
+            os.makedirs(safecastpath + '/ARCHIVE')
         if not os.path.exists(sdcardpath + '/ARCHIVE'):
             os.makedirs(safecastpath + '/ARCHIVE')
 
